@@ -7,6 +7,12 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+
+if (!module.parent) {
+    // Start the server only if this module is the main module (not required by another script)
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${port}`);
+    })
+};
+
+module.exports = app;
